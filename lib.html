@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Library Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <div class="sidebar">
+
+        <div class="logo">
+            📚 My Library
+        </div>
+
+        <button class="nav-button active"
+            onclick="showSection('dashboardSection', this)">
+            🏠 Dashboard
+        </button>
+
+        <button class="nav-button"
+            onclick="showSection('booksSection', this)">
+            📚 All Books
+        </button>
+
+        <button class="nav-button"
+            onclick="showSection('addSection', this)">
+            ➕ Add New Book
+        </button>
+
+        <button class="nav-button"
+            onclick="showSection('searchSection', this)">
+            🔍 Search Books
+        </button>
+
+        <button class="nav-button"
+            onclick="showSection('availableSection', this)">
+            📗 Available Books
+        </button>
+
+        <button class="nav-button"
+            onclick="showSection('aboutSection', this)">
+            ℹ️ About
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <div class="main-content">
+
+        <!-- Header -->
+
+        <div class="top-header">
+
+            <h1>Library Management System</h1>
+
+            <p>
+                Manage your books easily and efficiently.
+            </p>
+
+        </div>
+
+
+        <!-- =========================
+             DASHBOARD
+        ========================== -->
+
+        <section id="dashboardSection"
+                 class="content-section active-section">
+
+            <h2 class="section-title">
+                Dashboard
+            </h2>
+
+
+            <div class="dashboard">
+
+                <!-- Total Titles -->
+
+                <div class="card">
+
+                    <div class="card-icon red">
+                        📚
+                    </div>
+
+                    <div>
+                        <h3>Total Book Titles</h3>
+
+                        <p id="totalTitles">
+                            0
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- Total Books -->
+
+                <div class="card">
+
+                    <div class="card-icon blue">
+                        📖
+                    </div>
+
+                    <div>
+                        <h3>Total Books</h3>
+
+                        <p id="totalBooks">
+                            0
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- Available Books -->
+
+                <div class="card">
+
+                    <div class="card-icon green">
+                        ✅
+                    </div>
+
+                    <div>
+                        <h3>Available Books</h3>
+
+                        <p id="availableBooksCount">
+                            0
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Welcome Box -->
+
+            <div class="welcome-box">
+
+                <h2>
+                    Welcome to My Library 📚
+                </h2>
+
+                <p>
+                    Use the menu on the left to add new books,
+                    view all books, search for books and check
+                    available books.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ALL BOOKS
+        ========================== -->
+
+        <section id="booksSection"
+                 class="content-section">
+
+            <h2 class="section-title">
+                All Books
+            </h2>
+
+
+            <div class="section-box">
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Book Title
+                                </th>
+
+                                <th>
+                                    Quantity
+                                </th>
+
+                                <th>
+                                    Actions
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="bookTableBody">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ADD NEW BOOK
+        ========================== -->
+
+        <section id="addSection"
+                 class="content-section">
+
+            <h2 class="section-title">
+                Add New Book
+            </h2>
+
+
+            <div class="section-box">
+
+                <form id="bookForm">
+
+                    <div class="form-group">
+
+                        <label for="bookTitle">
+                            Book Title
+                        </label>
+
+                        <input
+                            type="text"
+                            id="bookTitle"
+                            placeholder="Enter book title"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="bookQuantity">
+                            Quantity
+                        </label>
+
+                        <input
+                            type="number"
+                            id="bookQuantity"
+                            placeholder="Enter quantity"
+                            min="1"
+                            required
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="primary-button">
+
+                        ➕ Add Book
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SEARCH BOOKS
+        ========================== -->
+
+        <section id="searchSection"
+                 class="content-section">
+
+            <h2 class="section-title">
+                Search Books
+            </h2>
+
+
+            <div class="section-box">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    class="search-input"
+                    placeholder="Search book by title..."
+                    oninput="searchBooks()"
+                >
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Book Title
+                                </th>
+
+                                <th>
+                                    Quantity
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="searchTableBody">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             AVAILABLE BOOKS
+        ========================== -->
+
+        <section id="availableSection"
+                 class="content-section">
+
+            <h2 class="section-title">
+                Available Books
+            </h2>
+
+
+            <div class="section-box">
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Book Title
+                                </th>
+
+                                <th>
+                                    Available Quantity
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="availableTableBody">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ABOUT
+        ========================== -->
+
+        <section id="aboutSection"
+                 class="content-section">
+
+            <h2 class="section-title">
+                About
+            </h2>
+
+
+            <div class="about-box">
+
+                <h2>
+                    Library Management System
+                </h2>
+
+                <p>
+                    This is a simple web-based Library
+                    Management System created using
+                    HTML, CSS and JavaScript.
+                </p>
+
+
+                <h3>
+                    Features
+                </h3>
+
+                <p>
+                    The system allows users to add, update,
+                    delete and search books. Book information
+                    is stored in the browser using Local Storage.
+                </p>
+
+
+                <h3>
+                    Technologies Used
+                </h3>
+
+                <p>
+                    HTML, CSS and JavaScript
+                </p>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- JavaScript -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
